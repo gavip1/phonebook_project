@@ -19,7 +19,10 @@ look_file ()
 check_valid_file ()
 {
 	REGEX_name='^[A-Za-z]+ [A-Za-z]+$'
-	REGEX_phone_number='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+	REGEX_phone_number='^[0-9]{3}-[0-9]{3}-[0-9]{4}$'
+	REGEX_address='^[0-9]+ [A-Za-z]+( [A-Za-z]+.?)?, [A-Za-z]+( [A-Za-z]+), [A-Z]{2} [0-9]{5}?$'
+	REGEX_date='^[0-9][0-9]?\/[0-9][0-9]?\/[0-9][0-9]$'
+	REGEX_salary='^[0-9]+$'
 	while IFS=: read -r f1 f2 f3 f4 f5
 	do
 		if ! [[ $f1 =~ $REGEX_name ]]
@@ -31,6 +34,21 @@ check_valid_file ()
 		then
 			echo "error, phone number in the input file containts wrong format"
 			echo $f2
+			return 1
+		elif ! [[ $f3 =~ $REGEX_address ]]
+		then
+			echo "error, phone number in the input file containts wrong format"
+			echo $f3
+			return 1
+		elif ! [[ $f4 =~ $REGEX_date ]]
+		then
+			echo "error, phone number in the input file containts wrong format"
+			echo $f4
+			return 1
+		elif ! [[ $f5 =~ $REGEX_salary ]]
+		then
+			echo "error, phone number in the input file containts wrong format"
+			echo $f5
 			return 1
 		fi
 	done <"$1"
