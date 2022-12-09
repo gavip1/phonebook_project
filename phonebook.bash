@@ -18,7 +18,7 @@ look_file ()
 
 check_valid_file ()
 {
-	REGEX_name='^[A-Z]+ [A-Z]+$'
+	REGEX_name='^[A-Za-z]+ [A-Za-z]+$'
 	REGEX_phone_number='[0-9]{3}-[0-9]{3}-[0-9]{4}'
 	while IFS=: read -r f1 f2 f3 f4 f5
 	do
