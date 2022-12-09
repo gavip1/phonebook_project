@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #Author: Gregorius Avip
 #Script title: Phonebook.bash
 #Purpose: Maintain a phonebook using .bash and unix features
