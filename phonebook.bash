@@ -18,10 +18,16 @@ look_file ()
 
 check_valid_file ()
 {
+	REGEX_NAME='^[A-Z][a-z]* [A-Z][a-z]*$'
 	while IFS=: read -r f1 f2 f3 f4 f5
 	do
-		echo "$f1 $f2 $f3 $f4 $f5"
+		if [[ ! $f1 =~ $REGEX_NAME ]]
+		then
+			echo "error, name in the input file contains wrong format"
+			return 1
+		fi
 	done <"$1"
+	return 0
 }
 
 main()
@@ -33,7 +39,10 @@ main()
 	then
 		return 0
 	fi
-	check_valid_file $FILENAME
+	if ! check_valid_file $FILENAME
+	then
+		return 0
+	fi
 }
 
 main
