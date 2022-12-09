@@ -4,8 +4,8 @@
 #Purpose: Maintain a phonebook using .bash and unix features
 
 #Ask the user input for a file and check if the file exists in the current directory
-#Stop the script if the file does not exist
-
+#returns true if the file exsists and return false if it does not
+#filename is asked in main and passed as the first argument
 look_file ()
 {
 	if [ ! -f "$1" ]
@@ -16,6 +16,10 @@ look_file ()
 	return 0
 }
 
+#Checking if the input file is a valid file via regular expression
+#If any field does not match, tell the user that there is an error in that field along with the current field
+#returns true if everything is valid and returns false otherwise
+#does not support for checking valid date or valid state (only the format)
 check_valid_file ()
 {
 	REGEX_name='^[A-Za-z]+ [A-Za-z]+$'
@@ -23,7 +27,7 @@ check_valid_file ()
 	REGEX_address='^[0-9]+ [A-Za-z]+( [A-Za-z]+.?)?, [A-Za-z]+( [A-Za-z]+)?, [A-Z]{2,3} [0-9]{5}$'
 	REGEX_date='^[0-9][0-9]?\/[0-9][0-9]?\/[0-9][0-9]$'
 	REGEX_salary='^[0-9]+$'
-	while IFS=: read -r f1 f2 f3 f4 f5
+	while IFS=: read -r f1 f2 f3 f4 f5 f6
 	do
 		if ! [[ $f1 =~ $REGEX_name ]]
 		then
@@ -32,29 +36,35 @@ check_valid_file ()
 			return 1
 		elif ! [[ $f2 =~ $REGEX_phone_number ]]
 		then
-			echo "error, phone number in the input file contains wrong format"
+			echo "error, home phone number in the input file contains wrong format"
 			echo $f2
 			return 1
-		elif ! [[ $f3 =~ $REGEX_address ]]
+		elif ! [[ $f3 =~ $REGEX_phone_number ]]
 		then
-			echo "error, address in the input file contains wrong format"
+			echo "error, mobile phone number in the input file contains wrong format"
 			echo $f3
 			return 1
-		elif ! [[ $f4 =~ $REGEX_date ]]
+		elif ! [[ $f4 =~ $REGEX_address ]]
 		then
-			echo "error, birth date in the input file contains wrong format"
+			echo "error, address in the input file contains wrong format"
 			echo $f4
 			return 1
-		elif ! [[ $f5 =~ $REGEX_salary ]]
+		elif ! [[ $f5 =~ $REGEX_date ]]
+		then
+			echo "error, birth date in the input file contains wrong format"
+			echo $f5
+			return 1
+		elif ! [[ $f6 =~ $REGEX_salary ]]
 		then
 			echo "error, salary in the input file contains wrong format"
-			echo $f5
+			echo $f6
 			return 1
 		fi
 	done <"$1"
 	return 0
 }
 
+#main drive program
 main()
 {
 	echo "What is the filename of the phonebook?"
