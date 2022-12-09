@@ -16,6 +16,14 @@ look_file ()
 	return 0
 }
 
+check_valid_file ()
+{
+	while IFS=: read -r f1 f2 f3 f4 f5
+	do
+		echo "$f1 $f2 $f3 $f4 $f5"
+	done <"$1"
+}
+
 main()
 {
 	echo "What is the filename of the phonebook?"
@@ -23,9 +31,9 @@ main()
 	FILENAME=$PWD\/$input
 	if ! look_file $FILENAME
 	then
-		echo "do something"
 		return 0
 	fi
+	check_valid_file $FILENAME
 }
 
 main
