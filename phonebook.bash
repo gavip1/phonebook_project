@@ -18,12 +18,13 @@ look_file ()
 
 check_valid_file ()
 {
-	REGEX_NAME='^[A-Z][a-z]* [A-Z][a-z]*$'
+	REGEX_name='^[A-Z][a-z]* [A-Z][a-z]*$'
 	while IFS=: read -r f1 f2 f3 f4 f5
 	do
-		if [[ ! $f1 =~ $REGEX_NAME ]]
+		if ! [[ $f1 =~ $REGEX_name ]]
 		then
 			echo "error, name in the input file contains wrong format"
+			echo $f1
 			return 1
 		fi
 	done <"$1"
