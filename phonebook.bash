@@ -21,7 +21,7 @@ main()
 	echo "What is the filename of the phonebook?"
 	read input
 	FILENAME=$PWD\/$input
-	if [ ! look_file $FILENAME ]
+	if ! look_file $FILENAME
 	then
 		echo "do something"
 		return 0
