@@ -18,13 +18,19 @@ look_file ()
 
 check_valid_file ()
 {
-	REGEX_name='^[A-Z][a-z]* [A-Z][a-z]*$'
+	REGEX_name='^[A-Z]+ [A-Z]+$'
+	REGEX_phone_number='[0-9]{3}-[0-9]{3}-[0-9]{4}'
 	while IFS=: read -r f1 f2 f3 f4 f5
 	do
 		if ! [[ $f1 =~ $REGEX_name ]]
 		then
 			echo "error, name in the input file contains wrong format"
 			echo $f1
+			return 1
+		elif ! [[ $f2 =~ $REGEX_phone_number ]]
+		then
+			echo "error, phone number in the input file containts wrong format"
+			echo $f2
 			return 1
 		fi
 	done <"$1"
