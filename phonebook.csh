@@ -5,5 +5,5 @@
 
 echo "What is the filename of the phonebook?"
 set input=$<
-set FILENAME=`cd $rootdir && pwd`
+set FILENAME=$PWD$input
 echo $FILENAME
