@@ -74,6 +74,7 @@ search_last ()
 		then
 			echo "$f1:$f2:$f3:$f4:$f5:$f6"
 			return
+		fi
 	done <"$1"
 	echo "the last name: $2 is not found in the record"
 }
