@@ -13,5 +13,10 @@ endif
 
 awk 'BEGIN {\
 FS = ":";\
-print "I hate awk" ;\
+}\
+{\
+if ($1 !~ /[A-Za-z]+ [A-Za-z]/)\
+	{\
+	print $1;\
+	}\
 }' $FILENAME
