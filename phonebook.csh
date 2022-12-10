@@ -5,5 +5,9 @@
 
 echo "What is the filename of the phonebook?"
 set input=$<
-set FILENAME=$PWD$input
+set FILENAME=$PWD\/$input
 echo $FILENAME
+if ( ! -f $FILENAME ) then
+	echo "File does not exist. hint: check if the file is in the directory or if the input file contains the right file extension"
+	exit 1
+endif
