@@ -82,16 +82,69 @@ search_last ()
 
 search_birthday_year ()
 {
-	echo "Record(s) with birth date year:"
+	echo "Record(s) with this birth date year:"
 	year="/$2:"
 	grep $year $1
 }
 
 search_birthday_month ()
 {
-	echo "Record(s) with birth date year:"
+	echo "Record(s) with this birth date month:"
 	year=":$2/"
 	grep $year $1
+}
+
+insert_record ()
+{
+	REGEX_name='^[A-Z][A-Za-z]* [A-Z][A-Za-z]*$'
+	REGEX_phone_number='^[0-9]{3}-[0-9]{3}-[0-9]{4}$'
+	REGEX_address='^[0-9]+ [A-Za-z]+( [A-Za-z]+.?)?, [A-Za-z]+( [A-Za-z]+)?, [A-Z]{2,3} [0-9]{5}$'
+	REGEX_date='^[0-9][0-9]?\/[0-9][0-9]?\/[0-9][0-9]$'
+	REGEX_salary='^[0-9]+$'
+	echo "What is the first name and last name (separate with space)?:"
+	read name
+	echo "What is the home phone number? (xxx-xxx-xxxx) x is a digit"
+	read number1
+	echo "What is the mobile phone number? (xxx-xxx-xxxx) x is a digit"
+	read number2
+	echo "What is the address? (street_number Street_Address, City, State, zip_number) "
+	read address
+	echo "What is the birth date? (month/day/year) please input the last two digit of the year"
+	read birthdate
+	echo "What is the salary? any digits of number"
+	read salary
+	if ! [[ $name =~ $REGEX_name ]]
+		then
+			echo "error, name in the input contains wrong format"
+			echo $name
+			return 1
+		elif ! [[ $number1 =~ $REGEX_phone_number ]]
+		then
+			echo "error, home phone number in the input contains wrong format"
+			echo $number1
+			return 1
+		elif ! [[ $number2 =~ $REGEX_phone_number ]]
+		then
+			echo "error, mobile phone number in the input contains wrong format"
+			echo $number2
+			return 1
+		elif ! [[ $address =~ $REGEX_address ]]
+		then
+			echo "error, address in the input contains wrong format"
+			echo $address
+			return 1
+		elif ! [[ $birthdate =~ $REGEX_date ]]
+		then
+			echo "error, birth date in the input file contains wrong format"
+			echo $birthdate
+			return 1
+		elif ! [[ $salary =~ $REGEX_salary ]]
+		then
+			echo "error, salary in the input file contains wrong format"
+			echo $salary
+			return 1
+	fi
+	data="$name:$number1:$number2:$address:$year:$salary"
 }
 
 sort_first_alphabetical ()
@@ -136,9 +189,11 @@ main()
 	#read input
 	#search_birthday_year $FILENAME $input
 	
-	echo "What is the birth date month?"
-	read input
-	search_birthday_month $FILENAME $input
+	#echo "What is the birth date month?"
+	#read input
+	#search_birthday_month $FILENAME $input
+	
+	insert_record
 }
 
 main
