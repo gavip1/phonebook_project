@@ -208,8 +208,9 @@ main()
 	#search_birthday_month $FILENAME $input
 	
 	#insert_record $FILENAME
-	
-	remove_by_mobile $FILENAME
+	echo "What is the phone number?"
+	read input
+	remove_by_mobile $FILENAME $input
 	
 }
 
