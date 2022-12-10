@@ -99,13 +99,15 @@ while (1)
 		set number1=$<
 		echo "What is the mobile phone number? (xxx-xxx-xxxx) x is a digit"
 		set number2=$<
-		echo "What is the address? (Ex:15 Pomona) "
+		echo "What is the address? (Ex:15 San Jose) "
 		set street_address=$<
-		echo "What is the city address? (Capitalize every first character of every word)"
+		echo "What is the city address? (Ex:Pomona)"
 		set city_address=$<
-		echo "What is the state and the zip number? (ex:CA 93290)"
-		set state_zip=$<
-		set address="${street_address}, ${city_address}, ${state_zip}"
+		echo "What is the state? (shorten capital letters only Ex:CA)"
+		set state=$<
+		echo "What is the zip number? (5 digit numbers)"
+		set zip=$<
+		set address="${street_address}, ${city_address}, ${state} ${zip}"
 		echo "What is the birth date? (month/day/year) please input the last two digit for the year"
 		set birthdate=$<
 		echo "What is the salary? any digits of number"
