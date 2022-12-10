@@ -12,7 +12,7 @@ if ( ! -f $FILENAME ) then
 endif
 
 set occur = `grep -vr '^[A-Za-z][A-Za-z]* [A-Za-z][A-Za-z]*' $FILENAME | wc -l`
-if (occur > 0) then
+if ( $occur > 0 ) then
 	echo "Error, file contains wrong format"
 	exit 2
 endif
