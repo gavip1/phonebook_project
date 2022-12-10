@@ -80,6 +80,12 @@ search_last ()
 	echo "the last name: $2 is not found in the record"
 }
 
+search_birthday_year ()
+{
+	year="/$2:"
+	grep $year $1
+}
+
 sort_first_alphabetical ()
 {
 	sort $1
@@ -114,9 +120,13 @@ main()
 	then
 		return 0
 	fi
-	echo "What is the last name?"
+	#echo "What is the last name?"
+	#read input
+	#search_last $FILENAME $input
+	
+	echo "What is the birth date year?"
 	read input
-	search_last $FILENAME $input
+	search_birthday_year $FILENAME $input
 }
 
 main
