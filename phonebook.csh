@@ -72,8 +72,7 @@ while (1)
 		set input_name=$<
 		echo "Record(s) with this last name:"
 		set regex="[A-Za-z] "
-		set last_name=$regex$input_name
-		grep "${last_name}" $FILENAME
+		grep "${regex}" $FILENAME
 		breaksw
 	case 6:
 		echo "What is the birth date year?"
