@@ -73,22 +73,21 @@ while (1)
 		echo "Record(s) with this last name:"
 		set regex="[A-Za-z] "
 		set last_name=$regex$input_name
-		echo last_name
-		grep $last_name $FILENAME
+		grep "${last_name}" $FILENAME
 		breaksw
 	case 6:
 		echo "What is the birth date year?"
 		set input_year=<$
 		echo "Record(s) with this birth date year:"
 		set year="/$input_year:"
-		grep $year $FILENAME
+		grep "${year}" $FILENAME
 		breaksw
 	case 7:
 		echo "What is the birth date month?"
 		set input_month=<$
 		echo "Record(s) with this birth date month:"
 		set month=":$input_month/"
-		grep $month $FILENAME
+		grep "${month}" $FILENAME
 		breaksw
 	case 11:
 		echo "Exiting the program..."
