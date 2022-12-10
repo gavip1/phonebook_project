@@ -94,7 +94,7 @@ while (1)
 		set REGEX_date='^[0-9][0-9]\?\/[0-9][0-9]\?\/[0-9][0-9]$'
 		set REGEX_salary='^[0-9]\+$'
 		echo "What is the first name and last name (separate with space)?:"
-		set name=$<
+		set name="$<"
 		echo "What is the home phone number? (xxx-xxx-xxxx) x is a digit"
 		set number1=$<
 		echo "What is the mobile phone number? (xxx-xxx-xxxx) x is a digit"
