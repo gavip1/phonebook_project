@@ -70,9 +70,19 @@ sort_first_alphabetical ()
 	sort $1
 }
 
-sort_last_alphabetical ()
+sort_first_reverse_alphabetical ()
 {
 	sort -r $1
+}
+
+sort_last_alphabetical ()
+{
+	sort -k 2 $1
+}
+
+sort_last_reverse_alphabetical ()
+{
+	sort -k 2r $1
 }
 
 #main drive program
@@ -90,7 +100,13 @@ main()
 		return 0
 	fi
 	sort_first_alphabetical $FILENAME
+	echo "\n"
 	sort_last_alphabetical $FILENAME
+	echo "\n"
+	sort_first_reverse_alphabetical $FILENAME
+	echo "\n"
+	sort_last_reverse_alphabetical $FILENAME
+	echo "\n"
 }
 
 main
