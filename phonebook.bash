@@ -80,13 +80,16 @@ search_last ()
 	echo "the last name: $2 is not found in the record"
 }
 
+#take 2 arguments $1 = filename, $2 = birth date year
+#returns the record with that year
 search_birthday_year ()
 {
 	echo "Record(s) with this birth date year:"
 	year="/$2:"
 	grep $year $1
 }
-
+#take 2 arguments $1 = filename, $2 = birth date month
+#returns the record with that month
 search_birthday_month ()
 {
 	echo "Record(s) with this birth date month:"
@@ -94,6 +97,9 @@ search_birthday_month ()
 	grep $year $1
 }
 
+#append new data after checking whether the data is valid
+#the data then will be sorted
+#take one argument as the filename 
 insert_record ()
 {
 	REGEX_name='^[A-Z][A-Za-z]* [A-Z][A-Za-z]*$'
@@ -146,8 +152,11 @@ insert_record ()
 	fi
 	data="$name:$number1:$number2:$address:$birthdate:$salary"
 	echo $data | tee -a $1 >/dev/null
+	sort -o $1
 }
 
+#take two arguments $1 = filename, $2 = phone number
+#if the number is a valid format, delete them from the record
 remove_by_mobile ()
 {
 	REGEX_phone_number='^[0-9]{3}-[0-9]{3}-[0-9]{4}$'
@@ -159,10 +168,12 @@ remove_by_mobile ()
 	fi
 	num=":$2:[0-9]+ "
 	sed -r -i '' "/$num/d" $1
-	#NOTE: on Mac OS X, doing in-place editing requires the extension to be explicitly specified
+	#NOTE: on Mac OS X, doing in-place (-i) editing requires the extension to be explicitly specified
 	#the quote '' is added as a work around
 }
 
+#take two arguments $1 = filename, $2 = last name
+#if the name is a valid format, delete them from the record
 remove_by_last ()
 {
 	REGEX_name='^[A-Z][A-Za-z]*$'
@@ -174,23 +185,30 @@ remove_by_last ()
 	fi
 	name=" $2"
 	sed -i '' "/$name/d" $1
+	#NOTE: on Mac OS X, doing in-place (-i) editing requires the extension to be explicitly specified
+	#the quote '' is added as a work around
 }
 
+#output the sorted record by first name
+#take one argument of filename
 sort_first_alphabetical ()
 {
 	sort $1
 }
-
+#output the reverse sorted record by first name
+#take one argument of filename
 sort_first_reverse_alphabetical ()
 {
 	sort -r $1
 }
-
+#output the sorted record by last name
+#take one argument of filename
 sort_last_alphabetical ()
 {
 	sort -k 2 $1
 }
-
+#output the reverse sorted record by last name
+#take one argument of filename
 sort_last_reverse_alphabetical ()
 {
 	sort -k 2r $1
@@ -210,6 +228,7 @@ main()
 	then
 		return 0
 	fi
+	
 	#echo "What is the last name?"
 	#read input
 	#search_last $FILENAME $input
