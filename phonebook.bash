@@ -152,7 +152,7 @@ insert_record ()
 	fi
 	data="$name:$number1:$number2:$address:$birthdate:$salary"
 	echo $data | tee -a $1 >/dev/null
-	sort -o $1
+	sort -o $1 $1
 }
 
 #take two arguments $1 = filename, $2 = phone number
@@ -287,7 +287,7 @@ main()
 				;;
 			11)
 				echo "Exiting the program..."
-				sort -o $1
+				sort -o $FILENAME $FILENAME
 				;;
 			*)
 				echo "Please input the right command"
