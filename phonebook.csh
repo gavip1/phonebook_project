@@ -171,7 +171,7 @@ while (1)
 		breaksw
 	case 11:
 		echo "Exiting the program..."
-		sort $FILENAME #$FILENAME
+		sort -o $FILENAME $FILENAME
 		exit 0
 		breaksw
 	default:
