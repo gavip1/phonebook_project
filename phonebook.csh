@@ -121,6 +121,25 @@ while (1)
 		set occur4 = `echo $address | grep -vr "${REGEX_address}" | wc -l`
 		set occur5 = `echo $birthdate | grep -vr "${REGEX_date}" | wc -l`
 		set occur6 = `echo $salary | grep -vr "${REGEX_salary}" | wc -l`
+		if ( $occur > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		else if ( $occur2 > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		else if ( $occur3 > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		else if ( $occur4 > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		else if ( $occur5 > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		else if ( $occur6 > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		endif
 		set data="${name}:${number1}:${number2}:${address}:${birthdate}:${salary}"
 		echo $data
 		echo $data | tee -a $FILENAME >/dev/null
