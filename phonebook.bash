@@ -144,8 +144,21 @@ insert_record ()
 			echo $salary
 			return
 	fi
-	data="$name:$number1:$number2:$address:$year:$salary"
-	echo $data | tee -a datebook2.txt >/dev/null
+	data="$name:$number1:$number2:$address:$birthdate:$salary"
+	echo $data | tee -a $1 >/dev/null
+}
+
+remove_by_mobile ()
+{
+	REGEX_phone_number='^[0-9]{3}-[0-9]{3}-[0-9]{4}$'
+	if ! [[ $2 =~ $REGEX_phone_number ]]
+		then
+			echo "error, home phone number in the input contains wrong format"
+			echo $2
+			return
+	fi
+	num=':$2:[0-9]+ '
+	sed '/$num/d' $1 > datebook3.txt 
 }
 
 sort_first_alphabetical ()
@@ -194,7 +207,10 @@ main()
 	#read input
 	#search_birthday_month $FILENAME $input
 	
-	insert_record
+	#insert_record $FILENAME
+	
+	remove_by_mobile $FILENAME
+	
 }
 
 main
