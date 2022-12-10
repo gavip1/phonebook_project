@@ -157,7 +157,7 @@ remove_by_mobile ()
 			echo $2
 			return
 	fi
-	num=':$2:[0-9]+ '
+	num=":$2:[0-9]+ "
 	sed -r -i '' "/$num/d" $1
 	#NOTE: on Mac OS X, doing in-place editing requires the extension to be explicitly specified
 	#the quote '' is added as a work around
