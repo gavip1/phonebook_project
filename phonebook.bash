@@ -68,7 +68,7 @@ check_valid_file ()
 #two arguments: $1 = the filename, $2 = last name
 search_last ()
 {
-	while IFS=: f1 f2 f3 f4 f5 f6
+	while IFS=: read -r f1 f2 f3 f4 f5 f6
 	do
 		if [[ $2 == $f2 ]]
 		then
