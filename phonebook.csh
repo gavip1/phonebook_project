@@ -115,12 +115,12 @@ while (1)
 		set birthdate="$<"
 		echo "What is the salary? any digits of number"
 		set salary="$<"
-		set occur = `echo $name | grep -vr "${REGEX_name}" | wc -l`
-		set occur2 = `echo $number1 | grep -vr "${REGEX_phone_number}" | wc -l`
-		set occur3 = `echo $number2 | grep -vr "${REGEX_phone_number}" | wc -l`
-		set occur4 = `echo $address | grep -vr "${REGEX_address}" | wc -l`
-		set occur5 = `echo $birthdate | grep -vr "${REGEX_date}" | wc -l`
-		set occur6 = `echo $salary | grep -vr "${REGEX_salary}" | wc -l`
+		set occur = `echo $name | grep -ov "${REGEX_name}" | wc -l`
+		set occur2 = `echo $number1 | grep -ov "${REGEX_phone_number}" | wc -l`
+		set occur3 = `echo $number2 | grep -ov "${REGEX_phone_number}" | wc -l`
+		set occur4 = `echo $address | grep -ov "${REGEX_address}" | wc -l`
+		set occur5 = `echo $birthdate | grep -ov "${REGEX_date}" | wc -l`
+		set occur6 = `echo $salary | grep -ov "${REGEX_salary}" | wc -l`
 		if ( $occur > 0 ) then
 			echo "Error, file contains wrong format"
 			breaksw
