@@ -78,14 +78,14 @@ while (1)
 		echo "What is the birth date year?"
 		set input_year=<$
 		echo "Record(s) with this birth date year:"
-		set year="/$input_year:"
+		set year="/${input_year}:"
 		grep "${year}" $FILENAME
 		breaksw
 	case 7:
 		echo "What is the birth date month?"
 		set input_month=<$
 		echo "Record(s) with this birth date month:"
-		set month=":$input_month/"
+		set month=":${input_month}/"
 		grep "${month}" $FILENAME
 		breaksw
 	case 11:
