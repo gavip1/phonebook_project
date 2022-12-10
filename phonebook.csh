@@ -11,12 +11,12 @@ if ( ! -f $FILENAME ) then
 	exit 1
 endif
 
-set occur = `grep -v '^[A-Za-z]+ [A-Za-z]+' $FILENAME | wc -l`
-set occur2 = `grep -v '[A-Za-z]:[0-9]{3}-[0-9]{3}-[0-9]{4}' $FILENAME | wc -l`
-set occur3 = `grep -v '[0-9]:[0-9]{3}-[0-9]{3}-[0-9]{4}' $FILENAME | wc -l`
-set occur4 = `grep -v '[0-9]+ [A-Za-z]+( [A-Za-z]+.?)?, [A-Za-z]+( [A-Za-z]+)?, [A-Z]{2,3} [0-9]{5}' $FILENAME | wc -l`
-set occur5 = `grep -v '[0-9][0-9]?\/[0-9][0-9]?\/[0-9][0-9]' $FILENAME | wc -l`
-set occur6 = `grep -v '[0-9]+$' $FILENAME | wc -l`
+set occur = `grep -ov '^[A-Za-z]+ [A-Za-z]+' $FILENAME | wc -l`
+set occur2 = `grep -ov '[A-Za-z]:[0-9]{3}-[0-9]{3}-[0-9]{4}' $FILENAME | wc -l`
+set occur3 = `grep -ov '[0-9]:[0-9]{3}-[0-9]{3}-[0-9]{4}' $FILENAME | wc -l`
+set occur4 = `grep -ov '[0-9]+ [A-Za-z]+( [A-Za-z]+.?)?, [A-Za-z]+( [A-Za-z]+)?, [A-Z]{2,3} [0-9]{5}' $FILENAME | wc -l`
+set occur5 = `grep -ov '[0-9][0-9]?\/[0-9][0-9]?\/[0-9][0-9]' $FILENAME | wc -l`
+set occur6 = `grep -ov '[0-9]+$' $FILENAME | wc -l`
 echo $occur
 echo $occur2
 echo $occur3
