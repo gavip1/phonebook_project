@@ -153,12 +153,27 @@ remove_by_mobile ()
 	REGEX_phone_number='^[0-9]{3}-[0-9]{3}-[0-9]{4}$'
 	if ! [[ $2 =~ $REGEX_phone_number ]]
 		then
-			echo "error, home phone number in the input contains wrong format"
+			echo "error, mobile phone number in the input contains wrong format"
 			echo $2
 			return
 	fi
 	num=':$2:[0-9]+ '
-	sed -r -i "/$num/d" $1 > datebook3.txt 
+	sed -r -i '' "/$num/d" $1
+	#NOTE: on Mac OS X, doing in-place editing requires the extension to be explicitly specified
+	#the quote '' is added as a work around
+}
+
+remove_by_last ()
+{
+	REGEX_name='^[A-Z][A-Za-z]*$'
+	if ! [[ $2 =~ $REGEX_name ]]
+		then
+			echo "error, name in the input contains wrong format"
+			echo $2
+			return
+	fi
+	name=" $2"
+	sed -i '' "/$name/d" $1
 }
 
 sort_first_alphabetical ()
@@ -212,6 +227,9 @@ main()
 	read input
 	remove_by_mobile $FILENAME $input
 	
+	echo "What is the last name?"
+	read input
+	remove_by_last $FILENAME $input
 }
 
 main
