@@ -12,6 +12,6 @@ if ( ! -f $FILENAME ) then
 endif
 
 awk -F':' '{ 
-	print $1
+	print $1,
 	print $2
 }' $FILENAME
