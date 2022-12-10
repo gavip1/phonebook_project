@@ -158,7 +158,7 @@ remove_by_mobile ()
 			return
 	fi
 	num=':$2:[0-9]+ '
-	sed '/$num/d' $1 > datebook3.txt 
+	sed -r '/$num/d' $1 > datebook3.txt 
 }
 
 sort_first_alphabetical ()
