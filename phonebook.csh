@@ -108,6 +108,7 @@ while (1)
 		echo "What is the zip number? (5 digit numbers)"
 		set zip=$<
 		set address="${street_address}, ${city_address}, ${state} ${zip}"
+		echo $address
 		echo "What is the birth date? (month/day/year) please input the last two digit for the year"
 		set birthdate=$<
 		echo "What is the salary? any digits of number"
