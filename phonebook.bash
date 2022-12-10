@@ -107,9 +107,9 @@ insert_record ()
 	read number1
 	echo "What is the mobile phone number? (xxx-xxx-xxxx) x is a digit"
 	read number2
-	echo "What is the address? (street_number Street_Address, City, State, zip_number) "
+	echo "What is the address? (street_number Street_Address, City, State zip_number) "
 	read address
-	echo "What is the birth date? (month/day/year) please input the last two digit of the year"
+	echo "What is the birth date? (month/day/year) please input the last two digit for the year"
 	read birthdate
 	echo "What is the salary? any digits of number"
 	read salary
@@ -117,22 +117,22 @@ insert_record ()
 		then
 			echo "error, name in the input contains wrong format"
 			echo $name
-			return 1
+			return
 		elif ! [[ $number1 =~ $REGEX_phone_number ]]
 		then
 			echo "error, home phone number in the input contains wrong format"
 			echo $number1
-			return 1
+			return
 		elif ! [[ $number2 =~ $REGEX_phone_number ]]
 		then
 			echo "error, mobile phone number in the input contains wrong format"
 			echo $number2
-			return 1
+			return
 		elif ! [[ $address =~ $REGEX_address ]]
 		then
 			echo "error, address in the input contains wrong format"
 			echo $address
-			return 1
+			return
 		elif ! [[ $birthdate =~ $REGEX_date ]]
 		then
 			echo "error, birth date in the input file contains wrong format"
@@ -142,10 +142,10 @@ insert_record ()
 		then
 			echo "error, salary in the input file contains wrong format"
 			echo $salary
-			return 1
+			return
 	fi
 	data="$name:$number1:$number2:$address:$year:$salary"
-	cat >> datebook3.txt $data
+	cat >> datebook2.txt $data
 }
 
 sort_first_alphabetical ()
