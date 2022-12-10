@@ -65,6 +65,19 @@ check_valid_file ()
 	return 0
 }
 
+#two arguments: $1 = the filename, $2 = last name
+search_last ()
+{
+	while IFS=: f1 f2 f3 f4 f5 f6
+	do
+		if [[ $2 == $f2 ]]
+		then
+			echo "$f1:$f2:$f3:$f4:$f5:$f6"
+			return
+	done <"$1"
+	echo "the last name: $2 is not found in the record"
+}
+
 sort_first_alphabetical ()
 {
 	sort $1
@@ -99,14 +112,9 @@ main()
 	then
 		return 0
 	fi
-	sort_first_alphabetical $FILENAME
-	echo "\n"
-	sort_last_alphabetical $FILENAME
-	echo "\n"
-	sort_first_reverse_alphabetical $FILENAME
-	echo "\n"
-	sort_last_reverse_alphabetical $FILENAME
-	echo "\n"
+	echo "What is the last name?"
+	read input
+	search_last $FILENAME $input
 }
 
 main
