@@ -68,7 +68,7 @@ check_valid_file ()
 #two arguments: $1 = the filename, $2 = last name
 search_last ()
 {
-	while IFS= read -r f1 f2 line
+	while read -r f1 f2 line
 	do
 		echo $f2
 		if [[ $f2 == *$2* ]]
