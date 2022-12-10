@@ -87,6 +87,54 @@ while (1)
 		set month=":${input_month}/"
 		grep "${month}" $FILENAME
 		breaksw
+	case 8:
+		set REGEX_name='^[A-Za-z]\+ [A-Za-z]\+$'
+		set REGEX_phone_number='^[0-9]\{3\}-[0-9]\{3\}-[0-9]\{4\}$'
+		set REGEX_address='^[0-9]\+ [A-Za-z]\+\( [A-Za-z]\+.\?\)\?, [A-Za-z]\+\( [A-Za-z]\+\)\?, [A-Z]\{2,3\} [0-9]\{5\}$'
+		set REGEX_date='^[0-9][0-9]\?\/[0-9][0-9]\?\/[0-9][0-9]$'
+		set REGEX_salary='^[0-9]\+$'
+		echo "What is the first name and last name (separate with space)?:"
+		set name=$<
+		echo "What is the home phone number? (xxx-xxx-xxxx) x is a digit"
+		set number1=$<
+		echo "What is the mobile phone number? (xxx-xxx-xxxx) x is a digit"
+		set number2=$<
+		echo "What is the address? (street_number Street_Address, City, State zip_number) "
+		set address=$<
+		echo "What is the birth date? (month/day/year) please input the last two digit for the year"
+		set birthdate=$<
+		echo "What is the salary? any digits of number"
+		set salary=$<
+		if ( "${name}" !~ "${REGEX_name}" ) then
+			echo "error, name in the input contains wrong format"
+			echo $name
+			breaksw
+		else if ( "${number1}" !~ "${REGEX_phone_number}" ) then
+			echo "error, home phone number in the input contains wrong format"
+			echo $number1
+			breaksw
+		else if ( "${number2}" !~ "${REGEX_phone_number}" ) then
+			echo "error, mobile phone number in the input contains wrong format"
+			echo $number2
+			breaksw
+		else if ( "${address}" !~ "${REGEX_address}" ) then
+			echo "error, address in the input contains wrong format"
+			echo $address
+			breaksw
+		else if ( "${birthdate}" !~ "${REGEX_date}" ) then
+			echo "error, birth date in the input file contains wrong format"
+			echo $birthdate
+			breaksw
+		else if ( "${salary}" !~ "${REGEX_salary}" ) then
+			echo "error, salary in the input file contains wrong format"
+			echo $salary
+			breaksw
+		endif
+		set data="${name}:${number1}:${number2}:${address}:${birthdate}:${salary}"
+		echo $data
+		echo $data | tee -a $FILENAME >/dev/null
+		sort -o $FILENAME $FILENAME
+		breaksw
 	case 11:
 		echo "Exiting the program..."
 		sort $FILENAME #$FILENAME

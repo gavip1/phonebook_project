@@ -124,27 +124,27 @@ insert_record ()
 			echo "error, name in the input contains wrong format"
 			echo $name
 			return
-		elif ! [[ $number1 =~ $REGEX_phone_number ]]
+	elif ! [[ $number1 =~ $REGEX_phone_number ]]
 		then
 			echo "error, home phone number in the input contains wrong format"
 			echo $number1
 			return
-		elif ! [[ $number2 =~ $REGEX_phone_number ]]
+	elif ! [[ $number2 =~ $REGEX_phone_number ]]
 		then
 			echo "error, mobile phone number in the input contains wrong format"
 			echo $number2
 			return
-		elif ! [[ $address =~ $REGEX_address ]]
+	elif ! [[ $address =~ $REGEX_address ]]
 		then
 			echo "error, address in the input contains wrong format"
 			echo $address
 			return
-		elif ! [[ $birthdate =~ $REGEX_date ]]
+	elif ! [[ $birthdate =~ $REGEX_date ]]
 		then
 			echo "error, birth date in the input file contains wrong format"
 			echo $birthdate
 			return 1
-		elif ! [[ $salary =~ $REGEX_salary ]]
+	elif ! [[ $salary =~ $REGEX_salary ]]
 		then
 			echo "error, salary in the input file contains wrong format"
 			echo $salary
