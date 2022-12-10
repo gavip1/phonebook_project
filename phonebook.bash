@@ -82,7 +82,15 @@ search_last ()
 
 search_birthday_year ()
 {
+	echo "Record(s) with birth date year:"
 	year="/$2:"
+	grep $year $1
+}
+
+search_birthday_month ()
+{
+	echo "Record(s) with birth date year:"
+	year=":$2/"
 	grep $year $1
 }
 
@@ -124,9 +132,13 @@ main()
 	#read input
 	#search_last $FILENAME $input
 	
-	echo "What is the birth date year?"
+	#echo "What is the birth date year?"
+	#read input
+	#search_birthday_year $FILENAME $input
+	
+	echo "What is the birth date month?"
 	read input
-	search_birthday_year $FILENAME $input
+	search_birthday_month $FILENAME $input
 }
 
 main
