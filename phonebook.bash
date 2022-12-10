@@ -145,6 +145,7 @@ insert_record ()
 			return 1
 	fi
 	data="$name:$number1:$number2:$address:$year:$salary"
+	echo $data
 }
 
 sort_first_alphabetical ()
