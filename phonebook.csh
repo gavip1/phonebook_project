@@ -11,8 +11,6 @@ if ( ! -f $FILENAME ) then
 	exit 1
 endif
 
-awk '
-	BEGIN
-	{ FS=":" }
-	{ print $1
-	}' $FILENAME
+awk 'BEGIN {\
+print "I hate awk" ;\
+}' $FILENAME
