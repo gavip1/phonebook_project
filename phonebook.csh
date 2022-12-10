@@ -145,6 +145,30 @@ while (1)
 		echo $data | tee -a $FILENAME >/dev/null
 		sort -o $FILENAME $FILENAME
 		breaksw
+	case 9:
+		echo "What is the phone number?"
+		set number="$<"
+		set REGEX_phone_number='^[0-9]\{3\}-[0-9]\{3\}-[0-9]\{4\}$'
+		set occur = `echo $number | grep -ov "${REGEX_phone_number}" | wc -l`
+		if ( $occur > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		endif
+		set num=":$number:[0-9]\+ "
+		sed -r -i '' "/${num}/d" $FILENAME
+		breaksw
+	case 10:
+		echo "What is the last name?"
+		set input_last="$<"
+		set REGEX_name='^[A-Z][A-Za-z]*$'
+		set occur = `echo $input_last | grep -ov "${REGEX_name}" | wc -l`
+		if ( $occur > 0 ) then
+			echo "Error, file contains wrong format"
+			breaksw
+		endif
+		set name=" ${input_last}"
+		sed -i '' "/${name}/d" $FILENAME
+		breaksw
 	case 11:
 		echo "Exiting the program..."
 		sort $FILENAME #$FILENAME
