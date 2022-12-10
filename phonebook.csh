@@ -17,6 +17,9 @@ FS = ":";\
 {\
 if ($1 !~ /[A-Za-z]+ [A-Za-z]/)\
 	{\
-	print $1;\
+	print The file contain the wrong format;\
+	exit;\
 	}\
 }' $FILENAME
+
+echo "I HECKING LOVE CSHELL"
