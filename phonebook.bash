@@ -288,15 +288,13 @@ main()
 			11)
 				echo "Exiting the program..."
 				sort -o $FILENAME $FILENAME
+				return
 				;;
 			*)
 				echo "Please input the right command"
 				;;
 		esac			
 	done
-	
-	
-	
 }
 
 main
