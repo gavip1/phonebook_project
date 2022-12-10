@@ -70,7 +70,7 @@ search_last ()
 {
 	while IFS=: read -r f1 f2 f3 f4 f5 f6
 	do
-		if [[ $2 == $f2 ]]
+		if [[ $2 =~ $f2 ]]
 		then
 			echo "$f1:$f2:$f3:$f4:$f5:$f6"
 			return
