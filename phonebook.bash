@@ -145,7 +145,7 @@ insert_record ()
 			return 1
 	fi
 	data="$name:$number1:$number2:$address:$year:$salary"
-	echo $data
+	cat >> datebook3.txt $data
 }
 
 sort_first_alphabetical ()
