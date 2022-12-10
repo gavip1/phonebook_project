@@ -12,5 +12,6 @@ if ( ! -f $FILENAME ) then
 endif
 
 awk 'BEGIN {\
+FS = ":";\
 print "I hate awk" ;\
 }' $FILENAME
