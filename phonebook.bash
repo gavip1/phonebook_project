@@ -70,7 +70,7 @@ sort_first_alphabetical ()
 	sort $1
 }
 
-sort_last_alphabetical )
+sort_last_alphabetical ()
 {
 	sort -r $1
 }
