@@ -78,8 +78,7 @@ while (1)
 		echo "What is the birth date year?"
 		set input_year=<$
 		echo "Record(s) with this birth date year:"
-		set year="/${input_year}:"
-		grep "${year}" $FILENAME
+		grep "/${input_year}:" $FILENAME
 		breaksw
 	case 7:
 		echo "What is the birth date month?"
