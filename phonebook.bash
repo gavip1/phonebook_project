@@ -70,7 +70,8 @@ search_last ()
 {
 	while IFS=: read -r f1 f2 f3 f4 f5 f6
 	do
-		if [[ $2 =~ $f2 ]]
+		last=$(echo $f1 | tr " " "\n")
+		if [[ $f2 == *$last[1]* ]]
 		then
 			echo "$f1:$f2:$f3:$f4:$f5:$f6"
 			return
