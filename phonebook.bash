@@ -20,9 +20,10 @@ look_file ()
 #If any field does not match, tell the user that there is an error in that field along with the current field
 #returns true if everything is valid and returns false otherwise
 #does not support for checking valid date or valid state (only the format)
+#does not check if there is more than 6 field (ignore extra fields)
 check_valid_file ()
 {
-	REGEX_name='^[A-Za-z]+ [A-Za-z]+$'
+	REGEX_name='^[A-Z][A-Za-z]* [A-Z][A-Za-z]*$'
 	REGEX_phone_number='^[0-9]{3}-[0-9]{3}-[0-9]{4}$'
 	REGEX_address='^[0-9]+ [A-Za-z]+( [A-Za-z]+.?)?, [A-Za-z]+( [A-Za-z]+)?, [A-Z]{2,3} [0-9]{5}$'
 	REGEX_date='^[0-9][0-9]?\/[0-9][0-9]?\/[0-9][0-9]$'
@@ -64,6 +65,16 @@ check_valid_file ()
 	return 0
 }
 
+sort_first_alphabetical ()
+{
+	sort $1
+}
+
+sort_last_alphabetical )
+{
+	sort -r $1
+}
+
 #main drive program
 main()
 {
@@ -78,6 +89,8 @@ main()
 	then
 		return 0
 	fi
+	sort_first_alphabetical $FILENAME
+	sort_last_alphabetical $FILENAME
 }
 
 main
