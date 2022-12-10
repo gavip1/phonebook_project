@@ -17,7 +17,7 @@ set occur3 = `grep -vr '[0-9]:[0-9]\{3\}-[0-9]\{3\}-[0-9]\{4\}' $FILENAME | wc -
 set occur4 = `grep -vr '[0-9]\+ [A-Za-z]\+\( [A-Za-z]\+.\?\)\?, [A-Za-z]\+\( [A-Za-z]\+\)\?, [A-Z]\{2,3\} [0-9]\{5\}' $FILENAME | wc -l`
 set occur5 = `grep -vr '[0-9][0-9]\?\/[0-9][0-9]\?\/[0-9][0-9]' $FILENAME | wc -l`
 set occur6 = `grep -vr '[0-9]\+$' $FILENAME | wc -l`
-grep -vr '[0-9]\+ [A-Za-z]\+\( [A-Za-z]\+.\?\)\?, [A-Za-z]\+\( [A-Za-z]\+\)\?, [A-Z]\{2,3\} [0-9]\{5\}' $FILENAME
+grep '[0-9]\+ [A-Za-z]\+\( [A-Za-z]\+.\?\)\?, [A-Za-z]\+\( [A-Za-z]\+\)\?, [A-Z]\{2,3\} [0-9]\{5\}' $FILENAME
 if ( $occur > 0 ) then
 	echo "Error, file contains wrong format"
 	exit 2
