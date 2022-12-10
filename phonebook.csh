@@ -11,7 +11,8 @@ if ( ! -f $FILENAME ) then
 	exit 1
 endif
 
-awk -F':' '{ 
-	print $1,
-	print $2
-}' $FILENAME
+awk '
+	BEGIN
+	{ FS=":" }
+	{ print $1
+	}' $FILENAME
