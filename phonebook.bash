@@ -145,7 +145,7 @@ insert_record ()
 			return
 	fi
 	data="$name:$number1:$number2:$address:$year:$salary"
-	cat >> datebook2.txt $data
+	echo $data | tee -a datebook2.txt >/dev/null
 }
 
 sort_first_alphabetical ()
