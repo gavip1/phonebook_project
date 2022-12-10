@@ -12,18 +12,7 @@ if ( ! -f $FILENAME ) then
 endif
 
 set occur = `grep -vr '^[A-Za-z][A-Za-z]* [A-Za-z][A-Za-z]*' $FILENAME | wc -l`
-echo $occur
-
-
-awk 'BEGIN {\
-FS = ":";\
-}\
-{\
-if ($1 != /[A-Za-z]+ [A-Za-z]+/)\
-	{\
-	print "The file contain the wrong format";\
-	exit;\
-	}\
-}' $FILENAME
-
-echo "I HECKING LOVE CSHELL"
+if (occur > 0) then
+	echo "Error, file contains wrong format"
+	exit 2
+endif
