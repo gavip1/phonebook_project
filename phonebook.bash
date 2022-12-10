@@ -1,6 +1,6 @@
 #!/bin/bash
 #Author: Gregorius Avip
-#Script title: Phonebook.bash
+#Script title: phonebook.bash
 #Purpose: Maintain a phonebook using .bash and unix features
 
 #Ask the user input for a file and check if the file exists in the current directory
@@ -234,7 +234,7 @@ main()
 		echo "MENU: (input the number without parantheses)"
 		echo "1) Show the record sorted in alphabetical order of first name"
 		echo "2) Show the record sorted in alphabetical order of last name"
-		echo "1) Show the record sorted in reverse alphabetical order of first name"
+		echo "3) Show the record sorted in reverse alphabetical order of first name"
 		echo "4) Show the record sorted in reverse alphabetical order of last name"
 		echo "5) Search for a record by Last Name"
 		echo "6) Search for a record by birthday in a given year"
