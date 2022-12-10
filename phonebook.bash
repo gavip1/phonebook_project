@@ -229,26 +229,74 @@ main()
 		return 0
 	fi
 	
-	#echo "What is the last name?"
-	#read input
-	#search_last $FILENAME $input
+	while true
+	do
+		echo "MENU: (input the number without parantheses)"
+		echo "1) Show the record sorted in alphabetical order of first name"
+		echo "2) Show the record sorted in alphabetical order of last name"
+		echo "1) Show the record sorted in reverse alphabetical order of first name"
+		echo "4) Show the record sorted in reverse alphabetical order of last name"
+		echo "5) Search for a record by Last Name"
+		echo "6) Search for a record by birthday in a given year"
+		echo "7) Search for a record by birthday in a given month"
+		echo "8) Insert Record"
+		echo "9) Delete a record by mobile phone number"
+		echo "10) Delete a record by last name"
+		echo "11) Exit Script"
+		read input
+		case $input in
+			1)
+				sort_first_alphabetical $FILENAME
+				;;
+			2)
+				sort_last_alphabetical $FILENAME
+				;;
+			3)
+				sort_first_reverse_alphabetical $FILENAME
+				;;
+			4)
+				sort_last_reverse_alphabetical $FILENAME
+				;;
+			5)
+				echo "What is the last name?"
+				read input_name
+				search_last $FILENAME $input_name
+				;;
+			6)
+				echo "What is the birth date year?"
+				read year
+				search_birthday_year $FILENAME $year
+				;;
+			7)
+				echo "What is the birth date month?"
+				read month
+				search_birthday_month $FILENAME $month
+				;;
+			8)
+				insert_record $FILENAME
+				;;
+			9)
+				echo "What is the phone number?"
+				read number
+				remove_by_mobile $FILENAME $number
+				;;
+			10)
+				echo "What is the last name?"
+				read input
+				remove_by_last $FILENAME $input
+				;;
+			11)
+				echo "Exiting the program..."
+				sort -o $1
+				;;
+			*)
+				echo "Please input the right command"
+				;;
+		esac			
+	done
 	
-	#echo "What is the birth date year?"
-	#read input
-	#search_birthday_year $FILENAME $input
 	
-	#echo "What is the birth date month?"
-	#read input
-	#search_birthday_month $FILENAME $input
 	
-	#insert_record $FILENAME
-	echo "What is the phone number?"
-	read input
-	remove_by_mobile $FILENAME $input
-	
-	echo "What is the last name?"
-	read input
-	remove_by_last $FILENAME $input
 }
 
 main
