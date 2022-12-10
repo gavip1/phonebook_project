@@ -12,7 +12,7 @@ if ( ! -f $FILENAME ) then
 	exit 1
 endif
 
-#Check if the file is valid
+#Check if the file is valid by counting the occurence of certain regex
 set occur = `grep -vr '^[A-Za-z]\+ [A-Za-z]\+' $FILENAME | wc -l`
 set occur2 = `grep -vr '[A-Za-z]:[0-9]\{3\}-[0-9]\{3\}-[0-9]\{4\}' $FILENAME | wc -l`
 set occur3 = `grep -vr '[0-9]:[0-9]\{3\}-[0-9]\{3\}-[0-9]\{4\}' $FILENAME | wc -l`
@@ -55,39 +55,39 @@ while (1)
 	echo "11) Exit Script"
 	set input=$<
 	switch ("$input")
-	case 1:
+	case 1: #output the sorted record by first name
 		sort $FILENAME
 		breaksw
-	case 2:
+	case 2: #output the sorted record by last name
 		sort -k 2 $FILENAME
 		breaksw
-	case 3:
+	case 3: #output the reverse sorted record by first name
 		sort -r $FILENAME
 		breaksw
-	case 4:
+	case 4: #output the reverse sorted record by last name
 		sort -k 2r $FILENAME
 		breaksw
-	case 5:
+	case 5: #search by last name
 		echo "What is the last name?"
 		set input_name=$<
 		echo "Record(s) with this last name:"
 		set regex="[A-Za-z]"
 		grep "${regex} ${input_name}:" $FILENAME
 		breaksw
-	case 6:
+	case 6: #search by year
 		echo "What is the birth date year?"
 		set input_year=$<
 		echo "Record(s) with this birth date year:"
 		grep "/${input_year}:" $FILENAME
 		breaksw
-	case 7:
+	case 7: #search by month
 		echo "What is the birth date month?"
 		set input_month=$<
 		echo "Record(s) with this birth date month:"
 		set month=":${input_month}/"
 		grep "${month}" $FILENAME
 		breaksw
-	case 8:
+	case 8: #input a new data after checking if the input is valid
 		set REGEX_name='^[A-Za-z]\+ [A-Za-z]\+$'
 		set REGEX_phone_number='^[0-9]\{3\}-[0-9]\{3\}-[0-9]\{4\}$'
 		set REGEX_address='^[0-9]\+ [A-Za-z]\+\( [A-Za-z]\+.\?\)\?, [A-Za-z]\+\( [A-Za-z]\+\)\?, [A-Z]\{2,3\} [0-9]\{5\}$'
@@ -145,7 +145,7 @@ while (1)
 		echo $data | tee -a $FILENAME >/dev/null
 		sort -o $FILENAME $FILENAME
 		breaksw
-	case 9:
+	case 9:	#delete an entry by the phone number
 		echo "What is the phone number?"
 		set number="$<"
 		set REGEX_phone_number='^[0-9]\{3\}-[0-9]\{3\}-[0-9]\{4\}$'
@@ -157,7 +157,7 @@ while (1)
 		set num=":${number}:[0-9][0-9]* "
 		sed -r -i '' "/${num}/d" $FILENAME
 		breaksw
-	case 10:
+	case 10:	#delete an entry by the last name
 		echo "What is the last name?"
 		set input_last="$<"
 		set REGEX_name='^[A-Z][A-Za-z]*$'
@@ -169,7 +169,7 @@ while (1)
 		set name=" ${input_last}"
 		sed -i '' "/${name}/d" $FILENAME
 		breaksw
-	case 11:
+	case 11: #Exit the program after sorting the file
 		echo "Exiting the program..."
 		sort -o $FILENAME $FILENAME
 		exit 0
