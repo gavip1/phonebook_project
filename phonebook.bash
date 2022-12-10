@@ -70,6 +70,7 @@ search_last ()
 {
 	while IFS= read -r f1 f2 line
 	do
+		echo $f2
 		if [[ $f2 == *$2* ]]
 		then
 			echo "$f1 $f2 $line"
