@@ -154,7 +154,7 @@ while (1)
 			echo "Error, file contains wrong format"
 			breaksw
 		endif
-		set num=":${number}:[0-9]\+ "
+		set num=":${number}:[0-9][0-9]* "
 		sed -r -i '' "/${num}/d" $FILENAME
 		breaksw
 	case 10:
