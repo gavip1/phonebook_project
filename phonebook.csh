@@ -96,9 +96,9 @@ while (1)
 		echo "What is the first name and last name (separate with space)?:"
 		set name="$<"
 		echo "What is the home phone number? (xxx-xxx-xxxx) x is a digit"
-		set number1=$<
+		set number1="$<"
 		echo "What is the mobile phone number? (xxx-xxx-xxxx) x is a digit"
-		set number2=$<
+		set number2="$<"
 		echo "What is the address number? (any digit number) "
 		set street_number="$<"
 		echo "What is the street address? (Capitilize first character of every word) "
@@ -112,34 +112,15 @@ while (1)
 		set address="${street_number} ${street_address}, ${city_address}, ${state} ${zip}"
 		echo $address
 		echo "What is the birth date? (month/day/year) please input the last two digit for the year"
-		set birthdate=$<
+		set birthdate="$<"
 		echo "What is the salary? any digits of number"
-		set salary=$<
-		if ( "${name}" !~ "${REGEX_name}" ) then
-			echo "error, name in the input contains wrong format"
-			echo $name
-			breaksw
-		else if ( "${number1}" !~ "${REGEX_phone_number}" ) then
-			echo "error, home phone number in the input contains wrong format"
-			echo $number1
-			breaksw
-		else if ( "${number2}" !~ "${REGEX_phone_number}" ) then
-			echo "error, mobile phone number in the input contains wrong format"
-			echo $number2
-			breaksw
-		else if ( "${address}" !~ "${REGEX_address}" ) then
-			echo "error, address in the input contains wrong format"
-			echo $address
-			breaksw
-		else if ( "${birthdate}" !~ "${REGEX_date}" ) then
-			echo "error, birth date in the input file contains wrong format"
-			echo $birthdate
-			breaksw
-		else if ( "${salary}" !~ "${REGEX_salary}" ) then
-			echo "error, salary in the input file contains wrong format"
-			echo $salary
-			breaksw
-		endif
+		set salary="$<"
+		set occur = `echo $name | grep -vr "${REGEX_name}" | wc -l`
+		set occur2 = `echo $number1 | grep -vr "${REGEX_phone_number}" | wc -l`
+		set occur3 = `echo $number2 | grep -vr "${REGEX_phone_number}" | wc -l`
+		set occur4 = `echo $address | grep -vr "${REGEX_address}" | wc -l`
+		set occur5 = `echo $birthdate | grep -vr "${REGEX_date}" | wc -l`
+		set occur6 = `echo $salary | grep -vr "${REGEX_salary}" | wc -l`
 		set data="${name}:${number1}:${number2}:${address}:${birthdate}:${salary}"
 		echo $data
 		echo $data | tee -a $FILENAME >/dev/null
